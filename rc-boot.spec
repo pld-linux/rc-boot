@@ -1,7 +1,7 @@
 Summary:	Wrapper for managing boot services
 Summary(pl):	Skrypty do zarz±dzania "bootloaderami"
 Name:		rc-boot
-Version:	0.5
+Version:	0.6
 Release:	1
 License:	GPL
 Group:		Base
@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(750,root,root) %dir %{_sysconfdir}
 %attr(750,root,root) %dir %{_sysconfdir}/images
 %attr(750,root,root) %dir %{_var}/rc-boot
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/images/*
+%config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/images/*
 %{_mandir}/man8/*
 
 %files -n rc-boot-lilo
