@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
+# Source0-md5:	2a6e4d604d938ab7567e419c21725d88
 Conflicts:	lilo < 22.0.2-2
 Conflicts:	grub < 0.90-2
 Requires:	bootloader
