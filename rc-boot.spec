@@ -12,6 +12,8 @@ Requires:	rc-boot-loader
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_sysconfdir	/etc/sysconfig/rc-boot
+
 %description
 Wrapper for managing boot services.
 
@@ -60,21 +62,17 @@ Skrypty do zarz±dzania bootloaderami - czesc dla gruba.
 %prep
 %setup -q
 
-%build
-
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/sysconfig/rc-boot/images
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/images
 install -d $RPM_BUILD_ROOT/sbin/
-install -d $RPM_BUILD_ROOT/var/rc-boot
+install -d $RPM_BUILD_ROOT%{_var}/rc-boot
 
-install src/rc-boot $RPM_BUILD_ROOT/sbin
-install src/*.sh $RPM_BUILD_ROOT/etc/sysconfig/rc-boot/
-install doc/config $RPM_BUILD_ROOT/etc/sysconfig/rc-boot/
+install src/rc-boot	$RPM_BUILD_ROOT/sbin
+install src/*.sh	$RPM_BUILD_ROOT%{_sysconfdir}/
+install doc/config	$RPM_BUILD_ROOT%{_sysconfdir}/
 
-(cd doc && gzip -9nf Assumtpions Authors BUGS README)
-
-%post
+gzip -9nf doc/{Assumtpions,Authors,BUGS,README}
 
 %post -n rc-boot-lilo
 rm -f /etc/sysconfig/rc-boot/functions.sh
@@ -85,16 +83,14 @@ rm -f /etc/sysconfig/rc-boot/functions.sh
 ln -s /etc/sysconfig/rc-boot/grub_functions.sh /etc/sysconfig/rc-boot/functions.sh
 
 %preun -n rc-boot-lilo
-if [ "$1" = 0 ] ; then
+if [ "$1" = "0" ] ; then
 	rm -f /etc/sysconfig/rc-boot/functions.sh
 fi
 
 %preun -n rc-boot-grub
-if [ "$1" = 0 ] ; then
+if [ "$1" = "0" ] ; then
 	rm -f /etc/sysconfig/rc-boot/functions.sh
 fi
-
-%preun
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -103,13 +99,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/*.gz
 %attr(754,root,root) /sbin/rc-boot
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-boot/config
-%attr(750,root,root) %dir /etc/sysconfig/rc-boot
-%attr(750,root,root) %dir /etc/sysconfig/rc-boot/images
-%attr(750,root,root) %dir /var/rc-boot
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config
+%attr(750,root,root) %dir %{_sysconfdir}
+%attr(750,root,root) %dir %{_sysconfdir}/images
+%attr(750,root,root) %dir %{_var}/rc-boot
 
 %files -n rc-boot-lilo
-%attr(640,root,root) /etc/sysconfig/rc-boot/lilo_functions.sh
+%defattr(644,root,root,755)
+%attr(640,root,root) %{_sysconfdir}/lilo_functions.sh
 
 %files -n rc-boot-grub
-%attr(640,root,root) /etc/sysconfig/rc-boot/grub_functions.sh
+%defattr(644,root,root,755)
+%attr(640,root,root) %{_sysconfdir}/grub_functions.sh
