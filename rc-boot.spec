@@ -67,10 +67,13 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/images
 install -d $RPM_BUILD_ROOT/sbin/
 install -d $RPM_BUILD_ROOT%{_var}/rc-boot
+install -d $RPM_BUILD_ROOT%{_mandir}/man8
 
 install src/rc-boot	$RPM_BUILD_ROOT/sbin
 install src/*.sh	$RPM_BUILD_ROOT%{_sysconfdir}/
 install doc/config	$RPM_BUILD_ROOT%{_sysconfdir}/
+install doc/rc-boot.8   $RPM_BUILD_ROOT%{_mandir}/man8/
+install doc/image       $RPM_BUILD_ROOT%{_sysconfdir}/images
 
 gzip -9nf doc/{Assumtpions,Authors,BUGS,README}
 
@@ -103,6 +106,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(750,root,root) %dir %{_sysconfdir}
 %attr(750,root,root) %dir %{_sysconfdir}/images
 %attr(750,root,root) %dir %{_var}/rc-boot
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/images/*
+%{_mandir}/man8/*
 
 %files -n rc-boot-lilo
 %defattr(644,root,root,755)
