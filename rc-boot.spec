@@ -1,10 +1,12 @@
 Summary:	Wrapper for managing boot services
 Summary(pl):	Skrypty do zarz±dzania "bootloaderami"
 Name:		rc-boot
-Version:	1.0.1
+Version:	1.1
 Release:	1
 License:	GPL
 Group:		Base
+Group(de):	Gründsätzlich
+Group(pl):	Podstawowe
 Source0:	ftp://ftp.pld.org.pl/software/rc-boot/%{name}-%{version}.tar.gz
 Conflicts:	lilo < 22.0.2-2
 Conflicts:	grub < 0.90-2
@@ -35,7 +37,7 @@ install src/rc-boot	$RPM_BUILD_ROOT/sbin
 install doc/config	$RPM_BUILD_ROOT%{_sysconfdir}/
 install doc/rc-boot.8   $RPM_BUILD_ROOT%{_mandir}/man8/
 
-gzip -9nf doc/{Assumtpions,Authors,BUGS,README,config,image,NEWS}
+gzip -9nf doc/{Assumtpions,Authors,BUGS,README,config,image}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
