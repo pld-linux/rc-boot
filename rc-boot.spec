@@ -2,7 +2,7 @@ Summary:	Wrapper for managing boot services
 Summary(pl):	Skrypty do zarz±dzania bootloaderami
 Name:		rc-boot
 Version:	1.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
