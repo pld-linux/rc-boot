@@ -1,0 +1,6 @@
+- Added support for BOOT=mbr and ROOT=auto. In case of this setings
+  rc-boot should try to find the answer by its own. Mayby usefull.
+- Makefile with usefull entry dist, install.
+- doc/VERSION file with the program version.
+- And last but not the least for expalnation of the meaning of the word
+  "automatically" see doc/config footnote [1]
