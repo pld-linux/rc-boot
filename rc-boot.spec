@@ -5,8 +5,6 @@ Version:	1.0.1
 Release:	1
 License:	GPL
 Group:		Base
-Group(de):	Gründsätzlich
-Group(pl):	Podstawowe
 Source0:	ftp://ftp.pld.org.pl/software/rc-boot/%{name}-%{version}.tar.gz
 Conflicts:	lilo < 22.0.2-2
 Conflicts:	grub < 0.90-2
