@@ -24,6 +24,7 @@ Skrypty do zarz±dzania bootloaderami.
 
 %prep
 %setup -q
+mv doc/Assum{tp,pt}ions # typo ;)
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -38,7 +39,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/{Assumtpions,Authors,BUGS,README,config,image}
+%doc doc/{Assumptions,Authors,BUGS,README,config,image}
 %attr(754,root,root) /sbin/rc-boot
 %attr(750,root,root) %dir %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config
