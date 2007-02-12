@@ -1,5 +1,5 @@
 Summary:	Wrapper for managing boot services
-Summary(pl):	Skrypty do zarz±dzania bootloaderami
+Summary(pl.UTF-8):   Skrypty do zarzÄ…dzania bootloaderami
 Name:		rc-boot
 Version:	1.1
 Release:	5
@@ -19,8 +19,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Wrapper for managing boot services.
 
-%description -l pl
-Skrypty do zarz±dzania bootloaderami.
+%description -l pl.UTF-8
+Skrypty do zarzÄ…dzania bootloaderami.
 
 %prep
 %setup -q
