@@ -1,0 +1,4 @@
+TYPE=Linux
+ROOT=auto
+KERNEL=/boot/vmlinuz
+INITRD=/boot/initrd

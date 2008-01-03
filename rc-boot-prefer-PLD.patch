@@ -1,0 +1,19 @@
+--- rc-boot-1.1/src/rc-boot	2002-08-20 16:22:48.000000000 +0000
++++ rc-boot-1.1/src/rc-boot	2008-01-01 16:04:59.000000000 +0000
+@@ -248,8 +248,14 @@
+ done
+ 
+ if [ "$DEFAULT" = "" ] ; then
+-	DEFAULT=$first
+-	msg "$first taken as defult image"
++	IM_File=${CONFIG_DIR}/images/PLD
++	if [ -f ${IM_File} ] && load_image ${IM_File} ; then
++		DEFAULT=$NAME
++		msg "$NAME taken as defult image"
++	else
++		DEFAULT=$first
++		msg "$first taken as defult image"
++	fi
+ elif [ "$def" = nok ] ; then
+ 	die "cannot found default image ($DEFAULT) in $CONFIG_DIR/images"
+ fi
