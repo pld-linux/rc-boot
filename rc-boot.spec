@@ -55,14 +55,10 @@ install doc/rc-boot.8	$RPM_BUILD_ROOT%{_mandir}/man8
 rm -rf $RPM_BUILD_ROOT
 
 %postun -n rc-boot-image-PLD
-if [ -x /sbin/rc-boot ]; then
-    /sbin/rc-boot 1>&2 || :
-fi
+/sbin/rc-boot 1>&2 || :
 
 %post -n rc-boot-image-PLD
-if [ -x /sbin/rc-boot ]; then
-    /sbin/rc-boot 1>&2 || :
-fi
+/sbin/rc-boot 1>&2 || :
 
 %files
 %defattr(644,root,root,755)
