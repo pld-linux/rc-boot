@@ -1,3 +1,5 @@
+# TODO:
+# - what about suggesting to install GRUB? GRUB has EA: %{ix86}
 Summary:	Wrapper for managing boot services
 Summary(pl.UTF-8):	Skrypty do zarządzania bootloaderami
 Name:		rc-boot
@@ -11,6 +13,7 @@ Source1:	PLD.image
 Patch0:		%{name}-prefer-PLD.patch
 Requires:	bootloader
 Requires:	sed
+Suggests:	rc-boot-lilo
 Conflicts:	grub < 0.90-2
 Conflicts:	lilo < 22.0.2-2
 BuildArch:	noarch
