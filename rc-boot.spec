@@ -11,11 +11,8 @@ Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	2a6e4d604d938ab7567e419c21725d88
 Source1:	PLD.image
 Patch0:		%{name}-prefer-PLD.patch
-Requires:	bootloader
+Requires:	rc-boot-bootloader
 Requires:	sed
-Suggests:	rc-boot-lilo
-Conflicts:	grub < 0.90-2
-Conflicts:	lilo < 22.0.2-2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,7 +45,7 @@ mv doc/Assum{tp,pt}ions # typo ;)
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/sbin,%{_sysconfdir}/images,%{_mandir}/man8}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-boot/images/PLD
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/images/PLD
 
 install src/rc-boot	$RPM_BUILD_ROOT/sbin
 install doc/config	$RPM_BUILD_ROOT%{_sysconfdir}
@@ -74,4 +71,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n rc-boot-image-PLD
 %defattr(644,root,root,755)
-%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-boot/images/PLD
+%attr(600,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/images/PLD
