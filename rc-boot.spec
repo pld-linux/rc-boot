@@ -38,7 +38,7 @@ Obraz PLD dla rc-boot.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 mv doc/Assum{tp,pt}ions # typo ;)
 
 %install
